@@ -1,24 +1,24 @@
-.master-create-account-container {
+.student-create-account-container {
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.master-create-account {
+.student-create-account {
   display: flex;
   flex-direction: column;
 }
-.input-container-username-master {
+.input-container-username-student {
   margin-top: 20px;
   display: flex;
   flex-direction: column;
 }
-.master-account-btn {
+.student-account-btn {
   margin-top: 20px;
   text-align: center;
 }
-.master-create-btn {
+.student-create-btn {
   color: white;
   background-color: #0284c7;
   padding: 4px;
@@ -26,17 +26,16 @@
   border-radius: 5px;
   width: 130px;
   height: 30px;
+  cursor: pointer;
 }
 .student-signup-heading {
   font-size: 20px;
   color: #0284c7;
 }
-.master-back {
+.student-back {
   background-color: #0284c7;
   color: white;
   padding: 4px;
   border: 0;
   width: 60px;
-
-  margin-top: 40px;
 }

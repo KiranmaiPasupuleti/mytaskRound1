@@ -1,4 +1,4 @@
-.master-login-container {
+.student-login-container {
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -47,16 +47,16 @@
   border: 0px;
   border-radius: 5px;
 }
-.create-master-account {
+.create-student-account {
   text-decoration: underline;
   color: blue;
   cursor: pointer;
 }
-.master-login-heading {
-  font-size: 20px;
+.student-login-heading {
   color: #0284c7;
+  font-size: 20px;
 }
-.master-error-login {
+.student-error-login {
   color: red;
   font-size: 11px;
 }

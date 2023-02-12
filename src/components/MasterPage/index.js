@@ -1,41 +1,78 @@
-import {Component} from 'react'
+import {useState, useEffect} from 'react'
 
 import './index.css'
 
 const chooseNum = [
-  {uniqueId: 'zero', display: 'Zero'},
-  {uniqueId: 'one', display: 'One'},
-  {uniqueId: 'two', display: 'Two'},
-  {uniqueId: 'three', display: 'Three'},
-  {uniqueId: 'four', display: 'Four'},
-  {uniqueId: 'five', display: 'Five'},
-  {uniqueId: 'six', display: 'Six'},
-  {uniqueId: 'seven', display: 'Seven'},
-  {uniqueId: 'eight', display: 'Eight'},
-  {uniqueId: 'nine', display: 'Nine'},
+  {
+    id: 'zero',
+    name: 'Zero',
+  },
+  {
+    id: 'one',
+    name: 'One',
+  },
+  {
+    id: 'two',
+    name: 'Two',
+  },
+  {
+    id: 'three',
+    name: 'Three',
+  },
+  {
+    id: 'four',
+    name: 'Four',
+  },
+  {
+    id: 'five',
+    name: 'Five',
+  },
+  {
+    id: 'six',
+    name: 'Six',
+  },
+  {
+    id: 'seven',
+    name: 'Seven',
+  },
+  {
+    id: 'eight',
+    name: 'Eight',
+  },
+  {
+    id: 'nine',
+    name: 'Nine',
+  },
 ]
 
 const chooseOperator = [
   {
-    uniqueId: 'plus',
-    display: 'Pluse',
+    id: 'plus',
+    name: 'Pluse',
   },
   {
-    uniqueId: 'minus',
-    display: 'Minus',
+    id: 'minus',
+    name: 'Minus',
   },
-  {uniqueId: 'times', display: 'Times'},
-  {uniqueId: 'dividedBy', display: 'DividedBy'},
+  {
+    id: 'times',
+    name: 'Times',
+  },
+  {
+    id: 'dividedBy',
+    name: 'DividedBy',
+  },
 ]
 
-class MasterPage extends Component {
-  state = {
-    leftNum: '',
-    operator: '',
-    rightNum: '',
-  }
+const MasterPage = () => {
+  const [leftNum, setLeftNum] = useState(chooseNum[0].id)
+  const [operator, setOperatur] = useState(chooseOperator[0].id)
+  const [rightNum, setRight] = useState(chooseNum[0].id)
+  const [localData, setLocalData] = useState([])
 
-  onSubmitNumbersOperator = () => {
+  const onSubmitNumbersOperator = event => {
+    event.preventDefault()
+
     function checkNum(num, temp) {
       if (temp === undefined) {
         return num
@@ -94,83 +131,104 @@ class MasterPage extends Component {
         return Math.round(left / right)
       }
     }
-
-    const {leftNum, operator, rightNum} = this.state
+    console.log(leftNum, operator, rightNum)
 
     const answer = eval(`${leftNum}(${operator}(${rightNum}()))`)
 
-    console.log(answer)
+    const finallocal = `${leftNum} ${operator} ${rightNum} = ${answer}`
+    let tempData = []
+
+    tempData.push(localData)
+    tempData.push(finallocal)
+    localStorage.setItem('Data', tempData)
+    getDataLocal()
   }
 
-  onChangeUserLeft = event => {
-    this.setState({leftNum: event.target.value})
+  const onChangeUserLeft = event => {
+    setLeftNum(event.target.value)
   }
 
-  onChangeUserOperator = event => {
-    this.setState({operator: event.target.value})
+  const onChangeUserOperator = event => {
+    setOperatur(event.target.value)
   }
 
-  onChangeUserRight = event => {
-    this.setState({rightNum: event.target.value})
+  const onChangeUserRight = event => {
+    setRight(event.target.value)
   }
 
-  render() {
-    const {leftNum, operator, rightNum} = this.state
-    console.log(leftNum, operator, rightNum)
-    return (
-      <div className="master-page-container">
-        <div>
-          <form
-            onSubmit={this.onSubmitNumbersOperator}
-            className="input-send-container"
+  const getDataLocal = () => {
+    const data = localStorage.getItem('Data')
+    console.log(data)
+
+    const me = data.split(',')
+    const len = me.length
+    setLocalData(me.slice(1, len))
+  }
+
+  useEffect(() => {
+    const data = localStorage.getItem('Data')
+    if (data !== null) {
+      getDataLocal()
+    }
+  }, [])
+
+  console.log(localData)
+
+  return (
+    <div className="master-page-container">
+      <div>
+        <form
+          onSubmit={onSubmitNumbersOperator}
+          className="input-send-container"
+        >
+          <select
+            value={leftNum}
+            onChange={onChangeUserLeft}
+            className="choose-container"
           >
-            <select
-              value={leftNum}
-              onChange={this.onChangeUserLeft}
-              className="choose-container"
-            >
-              {chooseNum.map(eachOp => (
-                <option key={eachOp.uniqueId} value={eachOp.uniqueId}>
-                  {eachOp.display}
-                </option>
-              ))}
-            </select>
-            <select
-              value={operator}
-              onChange={this.onChangeUserOperator}
-              className="choose-container"
-            >
-              {chooseOperator.map(eachOp => (
-                <option key={eachOp.uniqueId} value={eachOp.uniqueId}>
-                  {eachOp.display}
-                </option>
-              ))}
-            </select>
-            <select
-              value={rightNum}
-              onChange={this.onChangeUserRight}
-              className="choose-container"
-            >
-              {chooseNum.map(eachOp => (
-                <option key={eachOp.uniqueId} value={eachOp.uniqueId}>
-                  {eachOp.display}
-                </option>
-              ))}
-            </select>
-            <div>
-              <button className="output-btn" type="submit">
-                Get Output
-              </button>
-            </div>
-          </form>
-        </div>
-
-        <div className="question-answer-container">
-          <h1>Hello</h1>
-        </div>
+            {chooseNum.map(eachOp => (
+              <option key={eachOp.id} value={eachOp.id}>
+                {eachOp.name}
+              </option>
+            ))}
+          </select>
+          <select
+            value={operator}
+            onChange={onChangeUserOperator}
+            className="choose-container"
+          >
+            {chooseOperator.map(eachOp => (
+              <option key={eachOp.id} value={eachOp.id}>
+                {eachOp.name}
+              </option>
+            ))}
+          </select>
+          <select
+            value={rightNum}
+            onChange={onChangeUserRight}
+            className="choose-container"
+          >
+            {chooseNum.map(eachOp => (
+              <option key={eachOp.id} value={eachOp.id}>
+                {eachOp.id}
+              </option>
+            ))}
+          </select>
+          <div>
+            <button className="output-btn" type="submit">
+              Get Output
+            </button>
+          </div>
+        </form>
       </div>
-    )
-  }
+
+      <div className="question-answer-container">
+        {localData.map(eachData => (
+          <p className="para">{eachData}</p>
+        ))}
+      </div>
+    </div>
+  )
 }
 
 export default MasterPage

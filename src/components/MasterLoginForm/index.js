@@ -9,9 +9,7 @@ class MasterLoginForm extends Component {
   state = {
     userName: '',
     paswrd: '',
-
-    // errorMessage: '',
-    // showError: false,
+    errorMessage: false,
   }
 
   onChangeUsername = event => {
@@ -33,13 +31,16 @@ class MasterLoginForm extends Component {
     if (username === userName && password === paswrd) {
       const {history} = this.props
       history.push('/master-page')
+    } else {
+      this.setState({errorMessage: true})
     }
   }
 
   render() {
-    const {userName, paswrd} = this.state
+    const {userName, paswrd, errorMessage} = this.state
     return (
       <div className="master-login-container">
+        <h1 className="master-login-heading">Master Login</h1>
         <form className="form-container" onSubmit={this.onSubmitMasterLogin}>
           <div className="username-container">
             <label htmlFor="username">UserName</label>
@@ -62,6 +63,12 @@ class MasterLoginForm extends Component {
               value={paswrd}
             />
           </div>
+
+          {errorMessage && (
+            <p className="master-error-login">
+              *Provide Valid Username & password
+            </p>
+          )}
 
           <div className="btn-container">
             <button className="login-button" type="submit">

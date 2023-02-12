@@ -17,9 +17,11 @@ const Home = () => (
           Master Login
         </button>
       </Link>
-      <button className="login-btn" type="button">
-        Student Login
-      </button>
+      <Link to="/student-login">
+        <button className="login-btn" type="button">
+          Student Login
+        </button>
+      </Link>
     </div>
   </div>
 )

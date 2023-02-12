@@ -1,4 +1,5 @@
 import {Component} from 'react'
+import {Link} from 'react-router-dom'
 import './index.css'
 
 class MasterCreateAccount extends Component {
@@ -31,25 +32,41 @@ class MasterCreateAccount extends Component {
     console.log(username, password)
     return (
       <div className="master-create-account-container">
-        <form onSubmit={this.onSubmitCreateMaster}>
-          <div>
+        <h1 className="student-signup-heading">Master SignUp</h1>
+        <form
+          className="master-create-account"
+          onSubmit={this.onSubmitCreateMaster}
+        >
+          <div className="input-container-username-master">
             <label htmlFor="master-username">Username</label>
             <input
+              value={username}
               onChange={this.onChangeMasterUser}
               type="text"
               id="master-username"
             />
           </div>
-          <div>
+          <div className="input-container-username-master">
             <label htmlFor="password-master">Password</label>
             <input
+              value={password}
               onChange={this.onChangeMasterPassword}
               id="password-master"
               type="password"
             />
           </div>
-          <button type="submit">Create Master Account</button>
+          <div className="master-account-btn">
+            <button className="master-create-btn" type="submit">
+              Create Account
+            </button>
+          </div>
         </form>
+
+        <Link to="/master-login">
+          <button className="master-back" type="button">
+            Back
+          </button>
+        </Link>
       </div>
     )
   }
