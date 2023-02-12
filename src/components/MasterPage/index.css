@@ -1,0 +1,42 @@
+.master-page-container {
+  height: 100vh;
+  padding: 30px;
+  background-color: antiquewhite;
+}
+
+.input-send-container {
+  height: 10vh;
+  display: flex;
+  padding: 20px;
+  flex-direction: row;
+  justify-content: space-around;
+  border: 2px solid brown;
+  border-radius: 6px;
+}
+
+.choose-container {
+  height: 30px;
+  background-color: brown;
+  color: white;
+  border: 0;
+  border-radius: 4px;
+  padding: 5px;
+  width: 100px;
+}
+
+.output-btn {
+  height: 30px;
+  background-color: brown;
+  color: white;
+  border: 0;
+  border-radius: 4px;
+  padding: 5px;
+  width: 100px;
+}
+
+.question-answer-container {
+  height: 70vh;
+  border-radius: 6px;
+  border: 2px solid brown;
+  margin-top: 80px;
+}

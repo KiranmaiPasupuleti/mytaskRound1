@@ -1,0 +1,54 @@
+.master-login-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.username-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.password-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-username {
+  width: 200px;
+  height: 26px;
+}
+
+.input-password {
+  width: 200px;
+  height: 26px;
+}
+
+.username-container {
+  margin-bottom: 10px;
+}
+.password-container {
+  margin-bottom: 10px;
+}
+
+.btn-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.login-button {
+  color: white;
+  background-color: #0284c7;
+  width: 80px;
+  padding: 5px;
+  height: 28px;
+  border: 0px;
+  border-radius: 5px;
+}
+.create-master-account {
+  text-decoration: underline;
+  color: blue;
+  cursor: pointer;
+}
