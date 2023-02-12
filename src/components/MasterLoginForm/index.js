@@ -1,8 +1,6 @@
 import {Link} from 'react-router-dom'
 import {Component} from 'react'
 
-// import MasterPage from '../MasterPage'
-
 import './index.css'
 
 class MasterLoginForm extends Component {

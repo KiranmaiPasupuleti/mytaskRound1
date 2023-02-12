@@ -1,7 +1,5 @@
 import {Route, Switch, Redirect} from 'react-router-dom'
-
 import LoginForm from './components/LoginForm'
-
 import NotFound from './components/NotFound'
 import MasterLoginForm from './components/MasterLoginForm'
 import StudentLoginForm from './components/StudentLoginForm'

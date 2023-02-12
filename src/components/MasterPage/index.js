@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom'
 import {useState, useEffect} from 'react'
 
 import './index.css'
@@ -158,11 +159,15 @@ const MasterPage = () => {
 
   const getDataLocal = () => {
     const data = localStorage.getItem('Data')
-    console.log(data)
 
     const me = data.split(',')
-    const len = me.length
-    setLocalData(me.slice(1, len))
+    let finalData = []
+    for (let i of me) {
+      if (i !== '') {
+        finalData.push(i)
+      }
+    }
+    setLocalData(finalData)
   }
 
   useEffect(() => {
@@ -176,6 +181,11 @@ const MasterPage = () => {
 
   return (
     <div className="master-page-container">
+      <div className="button-container">
+        <Link to="/">
+          <button className="logout-btn">logout</button>
+        </Link>
+      </div>
       <div>
         <form
           onSubmit={onSubmitNumbersOperator}

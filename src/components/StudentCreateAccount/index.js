@@ -62,7 +62,7 @@ class StudentCreateAccount extends Component {
           </div>
         </form>
 
-        <Link to="/master-login">
+        <Link to="/student-login">
           <button className="student-back" type="button">
             Back
           </button>
